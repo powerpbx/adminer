@@ -553,8 +553,8 @@ if (!$columns && support("table")) {
 				if ($format) {
 					print_fieldset("export", lang('Export') . " <span id='selected2'></span>");
 					$output = $adminer->dumpOutput();
-					echo ($output ? html_select("output", $output, $adminer_import["output"]) . " " : "");
-					echo html_select("format", $format, $adminer_import["format"]);
+					echo ($output ? adminer_html_select("output", $output, $adminer_import["output"]) . " " : "");
+					echo adminer_html_select("format", $format, $adminer_import["format"]);
 					echo " <input type='submit' name='export' value='" . lang('Export') . "'>\n";
 					echo "</div></fieldset>\n";
 				}
@@ -570,7 +570,7 @@ if (!$columns && support("table")) {
 				echo script("qsl('a').onclick = partial(toggle, 'import');", "");
 				echo "<span id='import' class='hidden'>: ";
 				echo "<input type='file' name='csv_file'> ";
-				echo html_select("separator", array("csv" => "CSV,", "csv;" => "CSV;", "tsv" => "TSV"), $adminer_import["format"], 1); // 1 - select
+				echo adminer_html_select("separator", array("csv" => "CSV,", "csv;" => "CSV;", "tsv" => "TSV"), $adminer_import["format"], 1); // 1 - select
 				echo " <input type='submit' name='import' value='" . lang('Import') . "'>";
 				echo "</span>";
 				echo "</div>";

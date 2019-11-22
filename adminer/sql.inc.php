@@ -154,8 +154,8 @@ if (!$error && $_POST) {
 											}
 											$id = "export-$commands";
 											echo ", <a href='#$id'>" . lang('Export') . "</a>" . script("qsl('a').onclick = partial(toggle, '$id');", "") . "<span id='$id' class='hidden'>: "
-												. html_select("output", $adminer->dumpOutput(), $adminer_export["output"]) . " "
-												. html_select("format", $dump_format, $adminer_export["format"])
+												. adminer_html_select("output", $adminer->dumpOutput(), $adminer_export["output"]) . " "
+												. adminer_html_select("format", $dump_format, $adminer_export["format"])
 												. "<input type='hidden' name='query' value='" . h($q) . "'>"
 												. " <input type='submit' name='export' value='" . lang('Export') . "'><input type='hidden' name='token' value='$token'></span>\n"
 												. "</form>\n"

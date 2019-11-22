@@ -62,9 +62,9 @@ if ($row["ns"] != "") {
 $referencable = array_keys(array_filter(table_status('', true), 'fk_support'));
 $target = ($TABLE === $row["table"] ? $source : array_keys(fields(in_array($row["table"], $referencable) ? $row["table"] : reset($referencable))));
 $onchange = "this.form['change-js'].value = '1'; this.form.submit();";
-echo "<p>" . lang('Target table') . ": " . html_select("table", $referencable, $row["table"], $onchange) . "\n";
+echo "<p>" . lang('Target table') . ": " . adminer_html_select("table", $referencable, $row["table"], $onchange) . "\n";
 if ($jush == "pgsql") {
-	echo lang('Schema') . ": " . html_select("ns", $adminer->schemas(), $row["ns"] != "" ? $row["ns"] : $_GET["ns"], $onchange);
+	echo lang('Schema') . ": " . adminer_html_select("ns", $adminer->schemas(), $row["ns"] != "" ? $row["ns"] : $_GET["ns"], $onchange);
 } elseif ($jush != "sqlite") {
 	$dbs = array();
 	foreach ($adminer->databases() as $db) {
@@ -72,7 +72,7 @@ if ($jush == "pgsql") {
 			$dbs[] = $db;
 		}
 	}
-	echo lang('DB') . ": " . html_select("db", $dbs, $row["db"] != "" ? $row["db"] : $_GET["db"], $onchange);
+	echo lang('DB') . ": " . adminer_html_select("db", $dbs, $row["db"] != "" ? $row["db"] : $_GET["db"], $onchange);
 }
 ?>
 <input type="hidden" name="change-js" value="">
@@ -83,15 +83,15 @@ if ($jush == "pgsql") {
 $j = 0;
 foreach ($row["source"] as $key => $val) {
 	echo "<tr>";
-	echo "<td>" . html_select("source[" . (+$key) . "]", array(-1 => "") + $source, $val, ($j == count($row["source"]) - 1 ? "foreignAddRow.call(this);" : 1), "label-source");
-	echo "<td>" . html_select("target[" . (+$key) . "]", $target, $row["target"][$key], 1, "label-target");
+	echo "<td>" . adminer_html_select("source[" . (+$key) . "]", array(-1 => "") + $source, $val, ($j == count($row["source"]) - 1 ? "foreignAddRow.call(this);" : 1), "label-source");
+	echo "<td>" . adminer_html_select("target[" . (+$key) . "]", $target, $row["target"][$key], 1, "label-target");
 	$j++;
 }
 ?>
 </table>
 <p>
-<?php echo lang('ON DELETE'); ?>: <?php echo html_select("on_delete", array(-1 => "") + explode("|", $on_actions), $row["on_delete"]); ?>
- <?php echo lang('ON UPDATE'); ?>: <?php echo html_select("on_update", array(-1 => "") + explode("|", $on_actions), $row["on_update"]); ?>
+<?php echo lang('ON DELETE'); ?>: <?php echo adminer_html_select("on_delete", array(-1 => "") + explode("|", $on_actions), $row["on_delete"]); ?>
+ <?php echo lang('ON UPDATE'); ?>: <?php echo adminer_html_select("on_update", array(-1 => "") + explode("|", $on_actions), $row["on_update"]); ?>
 <?php echo doc_link(array(
 	'sql' => "innodb-foreign-key-constraints.html",
 	'mariadb' => "foreign-keys/",

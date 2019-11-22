@@ -434,7 +434,8 @@ $file = preg_replace('~\.\./adminer/static/([^\'"]*)~', '" . h(' . $replace . ')
 $file = preg_replace('~"\.\./externals/jush/modules/(jush\.js)"~', $replace, $file);
 $file = preg_replace("~<\\?php\\s*\\?>\n?|\\?>\n?<\\?php~", '', $file);
 $file = php_shrink($file);
-
+$customfile = file_get_contents(dirname(__FILE__) . "/$project/custom.php");
+$file = preg_replace('/<\?php/', $customfile, $file, 1);
 $filename = $project . (preg_match('~-dev$~', $VERSION) ? "" : "-$VERSION") . ($driver ? "-$driver" : "") . ($_SESSION["lang"] ? "-$_SESSION[lang]" : "") . ".php";
 file_put_contents($filename, $file);
 echo "$filename created (" . strlen($file) . " B).\n";

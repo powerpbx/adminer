@@ -18,3 +18,14 @@ lang.php - Update translations
 tests/katalon.html - Katalon Automation Recorder test suite
 
 If downloaded from Git then run: git submodule update --init
+
+INSTALL AND USE
+cd /usr/src
+git clone -b fusionpbx-custom-4.7.5 https://github.com/powerpbx/adminer.git
+cd adminer
+git submodule update --init
+./compile.php
+cd /var/www/fusionpbx/app/adminer
+mv adminer.php adminer.php.orig
+cp /usr/src/adminer/adminer-4.7.5.php adminer.php
+chown www-data. adminer.php

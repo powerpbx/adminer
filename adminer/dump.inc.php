@@ -143,21 +143,21 @@ if (!isset($row["events"])) { // backwards compatibility
 	$row["triggers"] = $row["table_style"];
 }
 
-echo "<tr><th>" . lang('Output') . "<td>" . html_select("output", $adminer->dumpOutput(), $row["output"], 0) . "\n"; // 0 - radio
+echo "<tr><th>" . lang('Output') . "<td>" . adminer_html_select("output", $adminer->dumpOutput(), $row["output"], 0) . "\n"; // 0 - radio
 
-echo "<tr><th>" . lang('Format') . "<td>" . html_select("format", $adminer->dumpFormat(), $row["format"], 0) . "\n"; // 0 - radio
+echo "<tr><th>" . lang('Format') . "<td>" . adminer_html_select("format", $adminer->dumpFormat(), $row["format"], 0) . "\n"; // 0 - radio
 
-echo ($jush == "sqlite" ? "" : "<tr><th>" . lang('Database') . "<td>" . html_select('db_style', $db_style, $row["db_style"])
+echo ($jush == "sqlite" ? "" : "<tr><th>" . lang('Database') . "<td>" . adminer_html_select('db_style', $db_style, $row["db_style"])
 	. (support("routine") ? checkbox("routines", 1, $row["routines"], lang('Routines')) : "")
 	. (support("event") ? checkbox("events", 1, $row["events"], lang('Events')) : "")
 );
 
-echo "<tr><th>" . lang('Tables') . "<td>" . html_select('table_style', $table_style, $row["table_style"])
+echo "<tr><th>" . lang('Tables') . "<td>" . adminer_html_select('table_style', $table_style, $row["table_style"])
 	. checkbox("auto_increment", 1, $row["auto_increment"], lang('Auto Increment'))
 	. (support("trigger") ? checkbox("triggers", 1, $row["triggers"], lang('Triggers')) : "")
 ;
 
-echo "<tr><th>" . lang('Data') . "<td>" . html_select('data_style', $data_style, $row["data_style"]);
+echo "<tr><th>" . lang('Data') . "<td>" . adminer_html_select('data_style', $data_style, $row["data_style"]);
 ?>
 </table>
 <p><input type="submit" value="<?php echo lang('Export'); ?>">

@@ -19,7 +19,7 @@ function adminer() {
 /** Get Adminer version
 * @return string
 */
-function version() {
+function adminer_version() {
 	global $VERSION;
 	return $VERSION;
 }
@@ -214,7 +214,7 @@ function optionlist($options, $selected = null, $use_keys = false) {
 * @param string
 * @return string
 */
-function html_select($name, $options, $value = "", $onchange = true, $labelled_by = "") {
+function adminer_html_select($name, $options, $value = "", $onchange = true, $labelled_by = "") {
 	if ($onchange) {
 		return "<select name='" . h($name) . "'"
 			. ($labelled_by ? " aria-labelledby='$labelled_by'" : "")
@@ -351,7 +351,7 @@ function set_password($vendor, $server, $username, $password) {
 }
 
 /** Get password from session
-* @return string or null for missing password or false for expired password
+* @return string
 */
 function get_password() {
 	$return = get_session("pwds");
@@ -1465,7 +1465,7 @@ function edit_form($TABLE, $fields, $row, $update) {
 			echo "<tr>"
 				. "<th><input name='field_keys[]'>"
 				. script("qsl('input').oninput = fieldChange;")
-				. "<td class='function'>" . html_select("field_funs[]", $adminer->editFunctions(array("null" => isset($_GET["select"]))))
+				. "<td class='function'>" . adminer_html_select("field_funs[]", $adminer->editFunctions(array("null" => isset($_GET["select"]))))
 				. "<td><input name='field_vals[]'>"
 				. "\n"
 			;

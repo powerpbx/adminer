@@ -13,7 +13,7 @@ if (isset($_GET["sqlite"]) || isset($_GET["sqlite2"])) {
 
 				function __construct($filename) {
 					$this->_link = new SQLite3($filename);
-					$version = $this->_link->version();
+					$version = $this->_link->adminer_version();
 					$this->server_info = $version["versionString"];
 				}
 
